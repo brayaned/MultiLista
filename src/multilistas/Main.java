@@ -25,7 +25,9 @@ public class Main {
         do{
             System.out.println("1.insertar propietario");
             System.out.println("2. insertar propiedad");
-            System.out.println("3.imrpimir");
+            System.out.println("3.retirar porpierario");
+            System.out.println("4.retirar propiedad");
+            System.out.println("5.imrpimir");
             n=sc.nextInt();
             switch(n){
                 case 1:
@@ -45,6 +47,18 @@ public class Main {
                     ml.insertarPropiedad(d, nomp, v);
                     break;
                 case 3:
+                    System.out.println("rpopietario numero");
+                    d=sc.nextInt();
+                    ml.retirarPropietario(d);
+                    break;
+                case 4:
+                    System.out.println("propietario");
+                    d=sc.nextInt();
+                    System.out.println("propiedad");
+                    nomp=sc.next();
+                    ml.retirarPropiedad(d, nomp);
+                    break;
+                case 5:
                     ml.imprimir();
                     break;
             }

@@ -84,7 +84,7 @@ public class MultiLista {
 
                 NodoPropiedad nodoHijo = np.abajo;
 
-                if (nodoHijo != null)//Lo utilizamos para el caso de que no tenga nodos hijos
+                if (nodoHijo != null)
                 {
                     while (nodoHijo != null) {
                         System.out.println(" - " + nodoHijo.getPropiedad()+" valor: "+ nodoHijo.getValor());
@@ -97,6 +97,83 @@ public class MultiLista {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
+    }
+    
+    int retirarPropietario(int d){
+        boolean esta;
+        NodoPropietario p;
+        p=cabeza;
+        if(p!=null && p.i<d){
+            p=p.sig;
+        }
+        if(p.i==d){
+            esta=true;
+        }
+        else{
+            esta=false;
+        }
+        
+        if(esta==false || p.abajo!=null){
+            System.out.println("Error");
+            return -1;
+        }
+        NodoPropietario aux=null;
+        NodoPropietario q=null;
+        NodoPropietario s=cabeza;
+        while(s!=null && s.i<d){
+            aux=q;
+            q=s;
+            s=s.sig;
+        }
+        if(q==null && s.sig==null){
+            cabeza=null;
+            s=null;
+        }else if(q==null && s.sig!=null){
+            aux=s.sig;
+            cabeza=aux;
+            s=null;
+        }else if(s.sig==null){
+            q.sig=null;
+        }else{
+            aux=s.sig;
+            s=null;
+            q.sig=aux;
+        }
+        return 1;
+    }
+    
+    int retirarPropiedad(int x, String nom){
+        NodoPropietario p;
+        p=cabeza;
+        while(p!=null && p.i<x){
+            p=p.sig;
+        }
+        if(p==null){
+            System.out.println("no existe");
+            return -1;
+        }
+        if(p.i==x){
+            NodoPropiedad s,q;
+            s=null;
+            q=p.abajo;
+            while(q!=null && q.getPropiedad().equals(nom)){
+                s=q;
+                q=q.abajo;
+            }
+            if(s==null){
+                System.out.println("no se encontro pro");
+                return -1;
+                
+            }else if(p.abajo==q || q.abajo==null){
+                p.abajo=null;
+            }else{
+                NodoPropiedad aux;
+                aux=q.abajo;
+                s.abajo=aux;
+                
+            }
+        }
+        return 1;
     }
     
 }
