@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class MultiLista {
     
     NodoPropietario cabeza;
-    
+    String r;
+    String rh;
     public MultiLista(){
         cabeza=null;
     }
@@ -76,27 +77,33 @@ public class MultiLista {
         }
     }
     
-    void imprimir(){
-        try {
-            NodoPropietario np = cabeza;
+    String imprimir(){
+        
+        NodoPropietario np = cabeza;
             while (np != null) {
-                System.out.println(np.getI()+" "+np.getNombre() );
+                r=np.getI()+"        "+np.getNombre();
 
                 NodoPropiedad nodoHijo = np.abajo;
 
                 if (nodoHijo != null)
                 {
                     while (nodoHijo != null) {
-                        System.out.println(" - " + nodoHijo.getPropiedad()+" valor: "+ nodoHijo.getValor());
+                        rh=" " + nodoHijo.getPropiedad()+" valor: "+ nodoHijo.getValor();
                         nodoHijo = nodoHijo.abajo;
                     }
                 }
                 np = np.sig;
             }
+            return r;
+        
+    }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString());
-        }
+    public String getR() {
+        return r;
+    }
+
+    public String getRh() {
+        return rh;
     }
     
     int retirarPropietario(int d){

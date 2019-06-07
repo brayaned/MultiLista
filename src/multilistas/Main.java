@@ -22,6 +22,9 @@ public class Main {
         int n,d;
         float v;
         String nom,nomp;
+        Ventana ventana=new Ventana();
+        ventana.setVisible(true);
+        /*
         do{
             System.out.println("1.insertar propietario");
             System.out.println("2. insertar propiedad");
@@ -62,7 +65,7 @@ public class Main {
                     ml.imprimir();
                     break;
             }
-        }while(n!=0);
+        }while(n!=0);*/
     }
     
 }
