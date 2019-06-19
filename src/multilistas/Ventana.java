@@ -39,7 +39,7 @@ public class Ventana extends JFrame {
         JLabel nom=new JLabel("Nombre:");
         JLabel val=new JLabel("Valor:");
         JLabel resultado=new JLabel();
-        JLabel rh=new JLabel();
+        JTextArea rh=new JTextArea();
         numero.setBounds(60, 100, 50, 20);
         nom.setBounds(235, 100, 50, 20);
         val.setBounds(430, 100, 50, 20);
@@ -90,7 +90,7 @@ public class Ventana extends JFrame {
                 int d=Integer.parseInt(dato.getText());
                 String nomp=nombre.getText();
                 float v=Float.parseFloat(valor.getText());
-                
+                lista.insertarPropiedad(d, nomp, v);
             };
         };
         insertarPropiedad.addActionListener(accionbuscar);
@@ -99,10 +99,9 @@ public class Ventana extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                resultado.setText(lista.imprimir());
-                rh.setText(lista.getRh());
-                
+                int d=Integer.parseInt(dato.getText());
+                String pro=nombre.getText();
+                lista.retirarPropiedad(d, pro);
             }
         };
         retirarPropiedad.addActionListener(accionimprimir);
@@ -112,11 +111,19 @@ public class Ventana extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int d=Integer.parseInt(dato.getText());
-                
+                lista.retirarPropietario(d);
 
                 
             }
         };
         retirarPropietario.addActionListener(accionretirar);
+        
+        ActionListener imprimirMl=new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lista.imprimir();
+            }
+        };
+        imprimir.addActionListener(imprimirMl);
     }
 }

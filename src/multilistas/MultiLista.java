@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 public class MultiLista {
     
     NodoPropietario cabeza;
-    String r;
     String rh;
+
     public MultiLista(){
         cabeza=null;
     }
@@ -76,35 +76,49 @@ public class MultiLista {
             }
         }
     }
-    
-    String imprimir(){
-        
+    String [][]matrix;
+    void imprimir(){
+        int i=0,j=0;
+        rh="";
+       
         NodoPropietario np = cabeza;
+         NodoPropiedad nodoHijo = np.abajo;
             while (np != null) {
-                r=np.getI()+"        "+np.getNombre();
-
-                NodoPropiedad nodoHijo = np.abajo;
-
-                if (nodoHijo != null)
-                {
-                    while (nodoHijo != null) {
-                        rh=" " + nodoHijo.getPropiedad()+" valor: "+ nodoHijo.getValor();
-                        nodoHijo = nodoHijo.abajo;
-                    }
+                i++;
+                //NodoPropiedad nodoHijo = np.abajo;
+                while(nodoHijo !=null){
+                    nodoHijo=nodoHijo.abajo;
+                    j++;
                 }
                 np = np.sig;
             }
-            return r;
+        matrix=new String[i][j];
+        for(int x=0;x<i;x++){
+            
+            for(int y=0;y<j;y++){
+                if(x<1){
+                    matrix[x][y]=np.getI()+" "+np.getNombre();
+                    np=np.sig;
+                }
+                else{
+                    matrix[x][y]=nodoHijo.getPropiedad();
+                    nodoHijo=nodoHijo.abajo;
+                }
+                
+            }
+        }
+        for(int x=0;x<i;x++){
+            for(int y=0;y<j;y++){
+                System.out.println(matrix[i][j]);
+            }
+        }
         
     }
+   
 
-    public String getR() {
-        return r;
-    }
+ 
 
-    public String getRh() {
-        return rh;
-    }
+
     
     int retirarPropietario(int d){
         boolean esta;
@@ -147,6 +161,10 @@ public class MultiLista {
             q.sig=aux;
         }
         return 1;
+    }
+
+    public String getRh() {
+        return rh;
     }
     
     int retirarPropiedad(int x, String nom){
