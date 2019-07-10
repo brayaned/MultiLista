@@ -39,14 +39,14 @@ public class Ventana extends JFrame {
         JLabel numero = new JLabel("Dato:");
         JLabel nom = new JLabel("Nombre:");
         JLabel val = new JLabel("Valor:");
-        JLabel resultado = new JLabel();
+        //JLabel resultado = new JLabel();
 
         int c = contador();
         JTextArea[] rh = new JTextArea[c];
         numero.setBounds(60, 100, 50, 20);
         nom.setBounds(235, 100, 50, 20);
         val.setBounds(430, 100, 50, 20);
-        resultado.setBounds(250, 300, 500, 20);
+        //resultado.setBounds(250, 300, 500, 20);
 
         insertarPropietario.setBounds(10, 50, 200, 20);
         insertarPropiedad.setBounds(230, 50, 200, 20);
@@ -58,7 +58,7 @@ public class Ventana extends JFrame {
         panel.add(retirarPropiedad);
         panel.add(retirarPropietario);
         panel.add(numero);
-        panel.add(resultado);
+        //panel.add(resultado);
 
         panel.add(imprimir);
         panel.add(nom);
@@ -123,19 +123,25 @@ public class Ventana extends JFrame {
         ActionListener imprimirMl = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int x = 250, y = 320;
-                resultado.setText(lista.imprimir());
+                int x = 200, y = 320;
+                
                 NodoPropietario np = lista.getCabeza();
 
                 while (np != null) {
+                    
+                    JLabel la=new JLabel();
+                    panel.add(la);
+                    la.setBounds(x, 300, 100, 20);
+                    la.setText(lista.imprimir(np));
                     if(np.abajo != null) {
+                        
                         JTextArea ta = new JTextArea();
                         panel.add(ta);
-                        ta.setBounds(x, y, 50, 100);
+                        ta.setBounds(x, y, 100, 100);
                         ta.setBackground(Color.LIGHT_GRAY);
                         ta.setText(lista.imprimirHijo(np));
                     }
-                    x += 50;
+                    x += 100;
                     np = np.sig;
                 }
 

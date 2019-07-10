@@ -20,14 +20,15 @@ public class MultiLista {
         cabeza = null;
     }
 
-    void insertarPropietario(int d, String nom) {
+    int insertarPropietario(int d, String nom) {
         NodoPropietario q;
         NodoPropietario s;
         q = null;
         s = cabeza;
-        while (s != null && d > s.i) {
+        while (s != null && d >= s.i) {
             if (s.i == d) {
                 System.out.println("no insertado");
+                return 0;
             }
             q = s;
             s = s.sig;
@@ -42,6 +43,7 @@ public class MultiLista {
             n.sig = s;
             q.sig = n;
         }
+        return 1;
     }
 
     void insertarPropiedad(int x, String nomp, float v) {
@@ -78,13 +80,11 @@ public class MultiLista {
         return cabeza;
     }
 
-    String imprimir() {
-        NodoPropietario q = cabeza;
+    String imprimir(NodoPropietario np) {
         String resul = "";
-        while (q != null) {
-            resul = resul + q.getI() + "." + q.getNombre() + "--->\n";
-            q = q.sig;
-        }
+
+        resul = np.getI() + "-" + np.getNombre() + "----->";
+
         return resul;
 
     }
@@ -96,11 +96,11 @@ public class MultiLista {
         if (q.abajo != null) {
             NodoPropiedad p = q.abajo;
             while (p != null) {
-                
-                resul = resul + p.getPropiedad() + "." + p.getValor() + "--->\n";
+
+                resul = resul + p.getPropiedad() + "." + p.getValor() + "\n";
                 p = p.abajo;
             }
-        }else{
+        } else {
             return "";
         }
 
@@ -164,25 +164,19 @@ public class MultiLista {
             System.out.println("no existe");
             return -1;
         }
+        else if (p.abajo == null) {
+            System.out.println("no exisste pro");
+            return -1;
+            
+        }
         if (p.i == x) {
             NodoPropiedad s, q;
             s = null;
             q = p.abajo;
-            while (q != null && q.getPropiedad().equals(nom)) {
-                s = q;
-                q = q.abajo;
-            }
-            if (s == null) {
-                System.out.println("no se encontro pro");
-                return -1;
 
-            } else if (p.abajo == q || q.abajo == null) {
-                p.abajo = null;
-            } else {
-                NodoPropiedad aux;
-                aux = q.abajo;
-                s.abajo = aux;
-
+            
+            while(q!=null && q.getPropiedad().equals(nom)){
+                
             }
         }
         return 1;
